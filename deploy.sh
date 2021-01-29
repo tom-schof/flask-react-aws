@@ -28,25 +28,25 @@ update_service() {
 
 deploy_cluster() {
 
-  cluster="flask-react-cluster" # new
+  cluster="flask-react-cluster"
 
   # users
-  service="flask-react-users-service"  # new
+  service="flask-react-users-service" 
   template="ecs_users_taskdefinition.json"
   task_template=$(cat "ecs/$template")
   task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $AWS_RDS_URI $PRODUCTION_SECRET_KEY)
   echo "$task_def"
   register_definition
-  update_service  # new
+  update_service 
 
   # client
-  service="flask-react-client-service"  # new
+  service="flask-react-client-service" 
   template="ecs_client_taskdefinition.json"
   task_template=$(cat "ecs/$template")
   task_def=$(printf "$task_template" $AWS_ACCOUNT_ID)
   echo "$task_def"
   register_definition
-  update_service  # new
+  update_service 
 
 }
 
